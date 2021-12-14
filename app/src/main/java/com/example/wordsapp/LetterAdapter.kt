@@ -31,7 +31,7 @@ class LetterAdapter :
     private val list = ('A').rangeTo('Z').toList()
 
     //Provides a reference for the views needed to display items in your list.
-    class LetterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class LetterViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val button: Button = view.findViewById(R.id.button_item)
     }
 
@@ -49,9 +49,8 @@ class LetterAdapter :
     override fun onBindViewHolder(holder: LetterViewHolder, position: Int) {
         val item = list[position]
         holder.button.text = item.toString()
-
+        val context = holder.view.context
         holder.button.setOnClickListener {
-            val context = holder.itemView.context
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra(LETTER, holder.button.text.toString())
             context.startActivity(intent)
