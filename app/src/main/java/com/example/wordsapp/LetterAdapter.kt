@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
-import com.example.wordsapp.DetailActivity.Companion.LETTER
 
 //Adapter for the [RecyclerView] in [MainActivity].
 class LetterAdapter :
@@ -36,8 +35,8 @@ class LetterAdapter :
         holder.button.text = item.toString()
         val context = holder.view.context
         holder.button.setOnClickListener {
-            val intent = Intent(context, DetailActivity::class.java)
-            intent.putExtra(LETTER, holder.button.text.toString())
+            val intent = Intent(context, WordListFragment::class.java)
+            intent.putExtra(WordListFragment.LETTER, holder.button.text.toString())
             context.startActivity(intent)
         }
     }
