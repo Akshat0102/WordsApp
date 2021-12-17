@@ -1,10 +1,10 @@
 package com.example.wordsapp
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 //Adapter for the [RecyclerView] in [MainActivity].
@@ -33,11 +33,12 @@ class LetterAdapter :
     override fun onBindViewHolder(holder: LetterViewHolder, position: Int) {
         val item = list[position]
         holder.button.text = item.toString()
-        val context = holder.view.context
+        holder.view.context
         holder.button.setOnClickListener {
-            val intent = Intent(context, WordListFragment::class.java)
-            intent.putExtra(WordListFragment.LETTER, holder.button.text.toString())
-            context.startActivity(intent)
+            val action = LetterListFragmentDirections.
+            actionLetterListFragmentToWordListFragment(letter = holder.button.text.toString())
+
+            holder.view.findNavController().navigate(action)
         }
     }
 }
